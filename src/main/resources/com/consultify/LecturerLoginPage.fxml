@@ -47,6 +47,6 @@
       <PasswordField fx:id="passwordInput" layoutX="483.0" layoutY="277.0" prefHeight="36.0" prefWidth="223.0" promptText="Password" />
       <Text fx:id="warningText" fill="#eb0000" layoutX="480.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <Text layoutX="606.0" layoutY="428.0" onMouseClicked="#studentLoginTextOnClick" strokeType="OUTSIDE" strokeWidth="0.0" text="Log in as Student?" />
+      <Text layoutX="543.0" layoutY="432.0" onMouseClicked="#studentLoginTextOnClick" strokeType="OUTSIDE" strokeWidth="0.0" text="Click here if you are a student" />
    </children>
 </AnchorPane>

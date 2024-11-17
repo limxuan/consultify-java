@@ -4,9 +4,11 @@ import com.consultify.service.UserService;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.control.PasswordField;
 import javafx.scene.text.Text;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -37,17 +39,15 @@ public class StudentLoginController {
     System.out.println("Sign In");
   }
 
-  public void lecturerLoginTextOnClick() {
+  public void lecturerLoginTextOnClick(MouseEvent e) {
     System.out.println("Lecturer Login Clicked");
     try {
-    Parent root = FXMLLoader.load(getClass().getResource("LecturerLoginPage.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("/com/consultify/LecturerLoginPage.fxml"));
     Scene scene = new Scene(root);
-    Stage stage = new Stage();
+    Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
     stage.setScene(scene);
-    stage.setResizable(false);
-    stage.show();
-    } catch (Exception e) {
-    e.printStackTrace();
+    } catch (Exception err) {
+    err.printStackTrace();
     }
   }
 
