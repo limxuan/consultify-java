@@ -23,7 +23,7 @@
             <Font name="Avenir Next Demi Bold" size="25.0" />
          </font>
       </Text>
-      <Text fill="#5898b5" layoutX="501.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign In ">
+      <Text fill="#5898b5" layoutX="394.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student Sign In ">
          <font>
             <Font name="Avenir Next Medium" size="55.0" />
          </font>
