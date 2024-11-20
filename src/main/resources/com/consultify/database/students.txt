@@ -1,0 +1,11 @@
+studentId|username|password|email|phone|createdAt|fullName
+S001|John|P4ssW0rd|john@edu.com.my|123456666|2024-11-17T14:30:00|John Doe
+S002|Alice|A1iC3P@ss|alice@edu.com.my|987654321|2024-11-18T09:00:00|Alice Wonderland
+S003|Bob|B0bSecure|bob@edu.com.my|112233445|2024-11-19T12:00:00|Bob Marley
+S004|Charlie|Ch@rL13Pass|charlie@edu.com.my|667788990|2024-11-17T15:30:00|Charlie Brown
+S005|David|D@v1dPass|david@edu.com.my|123456789|2024-11-20T10:45:00|David Smith
+S006|student|student|student@edu.com.my|123456789|2024-11-20T10:45:00|Student Smith
+69055290-3031-437d-9d8c-bb0f1f210742|s|ss|s|s|2024-11-20T23:51Z|s
+aa6c0e08-e312-474d-a4ee-b7c8585c290a|sa|ss|s|s|2024-11-20T23:52Z|s
+1b0fa1a7-e24f-4d28-a94d-a84c1ee46001|aaa|aaa|a|a|2024-11-20T23:54|a
+a3bc2a8f-ff33-4bb3-a970-8598857a21b4|f|f|f|f|2024-11-21T00:02|f

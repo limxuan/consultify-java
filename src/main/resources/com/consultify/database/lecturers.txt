@@ -1,0 +1,9 @@
+lecturerId|username|password|email|phone|fullName|officeLocation|createdAt
+L001|Gopal|S3cureP4ass|raja@edu.com.my|0123456789|Raja Gopal|B-07-08|2024-11-15T14:30:00
+L002|Siti|P@ssw0rd2024|siti@edu.com.my|0192345678|Siti Nurhaliza|A-02-05|2024-11-16T09:15:00
+L003|Ahmad|Ahm@d12345|ahmad@edu.com.my|0173456789|Ahmad Firdaus|C-03-07|2024-11-17T11:00:00
+L004|Maya|M@yaSecure1|maya@edu.com.my|0112345678|Maya Rani|D-10-12|2024-11-18T13:30:00
+L005|Zain|Z@in1234|zain@edu.com.my|0135678901|Zainal Abidin|E-15-02|2024-11-19T08:00:00
+L006|lecturer|lecturer|lecturer@edu.com.my|0146789012|Lecturer Abidin|E-15
+e2b95978-82f9-4e4f-ae05-9807aac00878|lect|lect|19213123|lec|lec|B-07-88|2024-11-21T00:34
+1302fe54-d79b-461a-aa7c-f42b9b2228d0|lecturerhaha|lecpass|lectph|lectfull|lectemai|hehe|2024-11-21T00:35
