@@ -1,0 +1,11 @@
+appointmentId|studentId|slotId|purpose|status|createdAt
+A001|S001|SL001|Personal Life Help|Pending Approval|2024-11-16T13:30:00
+A002|S002|SL002|Academic Stress|Pending Approval|2024-11-16T14:00:00
+A003|S003|SL003|Career Advice|Rejected|2024-11-16T14:30:00
+A004|S004|SL004|Relationship Issues|Approved|2024-11-16T15:00:00
+A005|S005|SL005|Exam Anxiety|Approved|2024-11-16T15:30:00
+A006|S006|SL006|Discuss career counseling and future plans|Pending Approval|2024-12-12T10:00:00
+A007|S006|SL007|Inquire about mental health resources|Approved|2024-12-14T14:00:00
+A008|S006|SL008|Discuss academic progress and personal concerns|Pending Approval|2024-12-15T09:30:00
+A009|S006|SL009|Seek advice on stress management techniques|Approved|2024-12-16T11:30:00
+A010|S006|SL010|Prepare for upcoming exams|Approved|2024-12-18T13:00:00

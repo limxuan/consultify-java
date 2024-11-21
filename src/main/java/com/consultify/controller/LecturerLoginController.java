@@ -3,6 +3,7 @@ package com.consultify.controller;
 import java.util.Arrays;
 
 import com.consultify.service.UserService;
+import com.consultify.service.UserSession;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -27,7 +28,7 @@ public class LecturerLoginController {
   public void signInBtnOnClick() {
     String username = usernameInput.getText();
     String password = passwordInput.getText();
-    String[] userCredentials = userService.validateLecturer(username, password);
+    String[] userCredentials = userService.loginLecturer(username, password);
     System.out.println(Arrays.toString(userCredentials));
     if (userCredentials == null) {
       new Alert(Alert.AlertType.ERROR, "Invalid username or password!").show();
@@ -35,6 +36,7 @@ public class LecturerLoginController {
       return;
     }
     new Alert(Alert.AlertType.INFORMATION, "Signed in as: " + userCredentials[5]).show();
+    System.out.println(UserSession.stringify());
   }
 
   public void studentLoginTextOnClick(MouseEvent e) {

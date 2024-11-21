@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.consultify.service.DatabaseService;
 import com.consultify.service.UserService;
+import com.consultify.service.UserSession;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -30,7 +31,7 @@ public class StudentLoginController {
   public void signInBtnOnClick() {
     String username = usernameInput.getText();
     String password = passwordInput.getText();
-    String[] userCredentials = userService.validateStudent(username, password);
+    String[] userCredentials = userService.loginStudent(username, password);
     System.out.println(Arrays.toString(userCredentials));
     if (userCredentials == null) {
       new Alert(Alert.AlertType.ERROR, "Invalid username or password!").show();
@@ -38,6 +39,8 @@ public class StudentLoginController {
       return;
     }
     new Alert(Alert.AlertType.INFORMATION, "Signed in as: " + userCredentials[6]).show();
+    System.out.println(UserSession.stringify());
+    redirectStudentHome();
   }
 
   public void lecturerLoginTextOnClick(MouseEvent e) {
@@ -57,6 +60,17 @@ public class StudentLoginController {
       Parent root = FXMLLoader.load(getClass().getResource("/com/consultify/UserRegistration.fxml"));
       Scene scene = new Scene(root);
       Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+      stage.setScene(scene);
+    } catch (Exception err) {
+      err.printStackTrace();
+    }
+  }
+
+  public void redirectStudentHome() {
+    try {
+      Parent root = FXMLLoader.load(getClass().getResource("/com/consultify/StudentHome.fxml"));
+      Scene scene = new Scene(root);
+      Stage stage = (Stage) ((Node) this.usernameInput).getScene().getWindow();
       stage.setScene(scene);
     } catch (Exception err) {
       err.printStackTrace();

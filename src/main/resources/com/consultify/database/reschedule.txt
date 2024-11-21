@@ -1,0 +1,6 @@
+rescheduleId|appointmentId|reason|status|createdAt
+R001|A004|Had a family emergency|Accepted|2024-11-16T15:15:00
+R002|A003|Was feeling unwell|Rejected|2024-11-16T15:30:00
+R003|A002|Clash with another class|Accepted|2024-11-16T15:45:00
+R004|A001|Unexpected travel plans|Accepted|2024-11-16T16:00:00
+R005|A005|Needed a different time|Rejected|2024-11-16T16:15:00

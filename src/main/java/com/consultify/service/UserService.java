@@ -10,19 +10,6 @@ public class UserService {
   private DatabaseService studentDatabaseService = new DatabaseService("students.txt");
   private DatabaseService lecturerDatabaseService = new DatabaseService("lecturers.txt");
 
-  public String[] validateStudent(String username, String password) {
-    System.out.println("Username: " + username);
-    System.out.println("Password: " + password);
-    ArrayList<String[]> loginCredentials = studentDatabaseService.parseContent();
-
-    for (String[] loginCredential : loginCredentials) {
-      if (loginCredential[1].equals(username) && loginCredential[2].equals(password)) {
-        return loginCredential;
-      }
-    }
-    return null;
-  }
-
   public String registerStudent(String username, String password, String fullName, String email, String phone) {
     ArrayList<String[]> loginCredentials = studentDatabaseService.parseContent();
     if (loginCredentials.stream().anyMatch(credential -> credential[1].equals(username))) {
@@ -60,11 +47,47 @@ public class UserService {
 
   }
 
-  public String[] validateLecturer(String username, String password) {
+  public String[] loginStudent(String username, String password) {
+    System.out.println("Username: " + username);
+    System.out.println("Password: " + password);
+    ArrayList<String[]> loginCredentials = studentDatabaseService.parseContent();
+
+    for (String[] loginCredential : loginCredentials) {
+      if (loginCredential[1].equals(username) && loginCredential[2].equals(password)) {
+        // index 6 is fullname
+        UserSession.setSession(loginCredential[0], username, "student", loginCredential[6]);
+        return loginCredential;
+      }
+    }
+    return null;
+  }
+
+  public String[] loginLecturer(String username, String password) {
     ArrayList<String[]> loginCredentials = lecturerDatabaseService.parseContent();
     for (String[] loginCredential : loginCredentials) {
       if (loginCredential[1].equals(username) && loginCredential[2].equals(password)) {
+        UserSession.setSession(loginCredential[0], username, "lecturer", loginCredential[5]);
         return loginCredential;
+      }
+    }
+    return null;
+  }
+
+  public String[] getLecturerById(String lecturerId) {
+    ArrayList<String[]> records = lecturerDatabaseService.parseContent();
+    for (String[] record : records) {
+      if (record[0].equals(lecturerId)) {
+        return record;
+      }
+    }
+    return null;
+  }
+
+  public String[] getStudentById(String studentId) {
+    ArrayList<String[]> records = studentDatabaseService.parseContent();
+    for (String[] record : records) {
+      if (record[0].equals(studentId)) {
+        return record;
       }
     }
     return null;

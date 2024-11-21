@@ -1,0 +1,6 @@
+feedbackId|appointmentId|studentId|feedbackContent|rating
+F001|A001|S001|Cleared up a lot of my thinking, useful advice!|4
+F002|A002|S002|Helped me with academic stress effectively.|5
+F003|A003|S003|Provided great career guidance.|4
+F004|A004|S004|The session was a bit rushed but insightful.|3
+F005|A005|S005|Gave practical strategies to reduce anxiety.|5
