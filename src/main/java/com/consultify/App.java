@@ -2,9 +2,8 @@ package com.consultify;
 
 import javafx.application.Application;
 import java.io.IOException;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+
+import com.consultify.utils.SceneSwitcher;
 import javafx.stage.Stage;
 
 /**
@@ -13,17 +12,8 @@ import javafx.stage.Stage;
 public class App extends Application {
   @Override
   public void start(Stage stage) throws IOException {
-    try {
-      Parent root = FXMLLoader.load(getClass().getResource("StudentLoginPage.fxml"));
-      Scene scene = new Scene(root);
-      stage.setScene(scene);
-      stage.setResizable(false);
-      stage.setWidth(850);
-      stage.setHeight(600);
-      stage.show();
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
+    SceneSwitcher.init(stage);
+    SceneSwitcher.switchTo("StudentLoginPage.fxml", "Login");
   }
 
   public static void main(String[] args) {

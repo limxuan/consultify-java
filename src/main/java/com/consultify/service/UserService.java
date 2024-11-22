@@ -36,20 +36,12 @@ public class UserService {
     loginCredentials
         .add(new String[] { lecturerId, username, password, email, phone, fullName, officeLocation, createdAt });
 
-    // TODO: remove later
-    for (String[] x : loginCredentials) {
-      System.out.println(Arrays.toString(x));
-    }
-    //
-
     lecturerDatabaseService.saveData(loginCredentials);
     return "Registered successfully!";
 
   }
 
   public String[] loginStudent(String username, String password) {
-    System.out.println("Username: " + username);
-    System.out.println("Password: " + password);
     ArrayList<String[]> loginCredentials = studentDatabaseService.parseContent();
 
     for (String[] loginCredential : loginCredentials) {

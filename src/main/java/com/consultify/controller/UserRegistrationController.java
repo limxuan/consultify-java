@@ -47,7 +47,6 @@ public class UserRegistrationController implements Initializable {
   }
 
   public void backButtonOnClick(MouseEvent e) {
-    System.out.println("hello world");
     try {
       Parent root = FXMLLoader.load(getClass().getResource("/com/consultify/StudentLoginPage.fxml"));
       Scene scene = new Scene(root);
@@ -89,7 +88,6 @@ public class UserRegistrationController implements Initializable {
 
       if (result.isPresent()) {
         String officeLocation = result.get();
-        System.out.println("User's office location: " + officeLocation);
 
         String message = userService.registerLecturer(usernameInput.getText(), passwordInput.getText(),
             phoneInput.getText(),

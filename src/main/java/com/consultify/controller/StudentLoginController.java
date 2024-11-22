@@ -7,6 +7,7 @@ import java.util.List;
 import com.consultify.service.DatabaseService;
 import com.consultify.service.UserService;
 import com.consultify.service.UserSession;
+import com.consultify.utils.SceneSwitcher;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -32,14 +33,12 @@ public class StudentLoginController {
     String username = usernameInput.getText();
     String password = passwordInput.getText();
     String[] userCredentials = userService.loginStudent(username, password);
-    System.out.println(Arrays.toString(userCredentials));
     if (userCredentials == null) {
       new Alert(Alert.AlertType.ERROR, "Invalid username or password!").show();
       passwordInput.clear();
       return;
     }
     new Alert(Alert.AlertType.INFORMATION, "Signed in as: " + userCredentials[6]).show();
-    System.out.println(UserSession.stringify());
     redirectStudentHome();
   }
 
@@ -68,10 +67,7 @@ public class StudentLoginController {
 
   public void redirectStudentHome() {
     try {
-      Parent root = FXMLLoader.load(getClass().getResource("/com/consultify/StudentHome.fxml"));
-      Scene scene = new Scene(root);
-      Stage stage = (Stage) ((Node) this.usernameInput).getScene().getWindow();
-      stage.setScene(scene);
+      SceneSwitcher.switchTo("StudentHomePage.fxml", "Home");
     } catch (Exception err) {
       err.printStackTrace();
     }

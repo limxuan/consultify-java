@@ -1,4 +1,12 @@
 package com.consultify.controller;
 
-public class StudentBookAppointmentController {
+import javafx.fxml.FXML;
+
+public class StudentBookAppointmentController extends StudentSidebarBaseController {
+  @FXML
+  private StudentSidebarComponentController studentSidebarComponentController;
+
+  public void initialize() {
+    initBase();
+  }
 }

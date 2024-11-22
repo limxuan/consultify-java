@@ -29,18 +29,15 @@ public class LecturerLoginController {
     String username = usernameInput.getText();
     String password = passwordInput.getText();
     String[] userCredentials = userService.loginLecturer(username, password);
-    System.out.println(Arrays.toString(userCredentials));
     if (userCredentials == null) {
       new Alert(Alert.AlertType.ERROR, "Invalid username or password!").show();
       passwordInput.clear();
       return;
     }
     new Alert(Alert.AlertType.INFORMATION, "Signed in as: " + userCredentials[5]).show();
-    System.out.println(UserSession.stringify());
   }
 
   public void studentLoginTextOnClick(MouseEvent e) {
-    System.out.println("Lecturer Login Clicked");
     try {
       Parent root = FXMLLoader.load(getClass().getResource("/com/consultify/StudentLoginPage.fxml"));
       Scene scene = new Scene(root);
