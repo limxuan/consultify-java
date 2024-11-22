@@ -33,12 +33,12 @@
                   </StackPane>
                   <VBox alignment="CENTER" maxHeight="504.0" maxWidth="190.0" prefHeight="504.0" prefWidth="190.0" spacing="30.0" style="-fx-background-color: #7dc1e1;">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Home">
+                        <Text fill="#394368" strokeType="OUTSIDE" strokeWidth="0.0" text="Home">
                            <font>
                               <Font name="Avenir Next Demi Bold" size="25.0" />
                            </font>
                         </Text>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Book Appointment" textAlignment="CENTER" wrappingWidth="169.32536745135036">
+                        <Text fill="WHITE" onMouseClicked="#redirectBookAppointment" strokeType="OUTSIDE" strokeWidth="0.0" text="Book Appointment" textAlignment="CENTER" wrappingWidth="169.32536745135036">
                            <font>
                               <Font name="Avenir Next Demi Bold" size="25.0" />
                            </font>
@@ -115,7 +115,7 @@
             </VBox>
          </children>
       </HBox>
-      <StackPane AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
+      <StackPane onMouseClicked="#redirectBookAppointment" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="35.0">
          <children>
             <Circle fill="#759bbf" radius="29.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="+" translateY="-3.0" wrappingWidth="24.1796875">

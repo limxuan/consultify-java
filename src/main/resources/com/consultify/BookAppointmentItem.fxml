@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Text?>
+
+<VBox fx:id="appointmentItem12" minHeight="118.0" minWidth="251.0" prefHeight="172.0" prefWidth="251.0" style="-fx-border-color: black; -fx-border-radius: 20px;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="519.0" VBox.vgrow="NEVER">
+         <children>
+            <StackPane maxHeight="28.0" maxWidth="28.0" prefHeight="28.0" prefWidth="28.0" HBox.hgrow="NEVER">
+               <children>
+                  <Circle fill="DODGERBLUE" radius="14.0" stroke="BLACK" strokeType="INSIDE">
+                     <StackPane.margin>
+                        <Insets />
+                     </StackPane.margin>
+                  </Circle>
+                  <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+               <HBox.margin>
+                  <Insets left="8.0" />
+               </HBox.margin>
+            </StackPane>
+            <Text fx:id="fullNameText12" strokeType="OUTSIDE" strokeWidth="0.0" text="Zainal Abidin" textOrigin="TOP" HBox.hgrow="NEVER">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Text>
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="BOTTOM_RIGHT">
+         <children>
+            <VBox alignment="CENTER_LEFT" prefHeight="66.0" prefWidth="593.0" spacing="5.0">
+               <children>
+                  <Text fx:id="timeText11" strokeType="OUTSIDE" strokeWidth="0.0" text="Time:    8:30am to 10:30am">
+                     <VBox.margin>
+                        <Insets left="10.0" top="5.0" />
+                     </VBox.margin>
+                  </Text>
+                  <Text fx:id="timeText112" strokeType="OUTSIDE" strokeWidth="0.0" text="Date: 22/12/2024">
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Text>
+                  <Text fx:id="venueText12" strokeType="OUTSIDE" strokeWidth="0.0" text="Venue:   B-07-08">
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Text>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</VBox>

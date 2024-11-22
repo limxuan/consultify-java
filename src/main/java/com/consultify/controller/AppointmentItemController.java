@@ -23,5 +23,10 @@ public class AppointmentItemController {
     timeText.setText("Time: " + time);
     venueText.setText("Venue: " + venue);
     statusText.setText("Status: " + status);
+    String color = "#35a2fe";
+    if ("Approved".equals(status)) {
+      color = "#1ebc4b";
+    }
+    statusText.setStyle("-fx-fill: " + color);
   }
 }
