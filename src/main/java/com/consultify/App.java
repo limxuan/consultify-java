@@ -13,7 +13,7 @@ public class App extends Application {
   @Override
   public void start(Stage stage) throws IOException {
     SceneSwitcher.init(stage);
-    SceneSwitcher.switchTo("StudentLoginPage.fxml", "Login");
+    SceneSwitcher.switchTo("StudentHomePage.fxml", "Home");
   }
 
   public static void main(String[] args) {

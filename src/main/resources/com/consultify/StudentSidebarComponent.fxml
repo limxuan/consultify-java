@@ -10,16 +10,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="190.0"
-   prefHeight="600.0" prefWidth="190.0" xmlns="http://javafx.com/javafx/23.0.1"
-   xmlns:fx="http://javafx.com/fxml/1"
-   fx:controller="com.consultify.controller.StudentSidebarComponentController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="190.0" prefHeight="600.0" prefWidth="190.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.consultify.controller.StudentSidebarComponentController">
    <children>
-      <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-         minWidth="-Infinity" prefHeight="48.0" prefWidth="200.0">
+      <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="48.0" prefWidth="200.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#759bbf" height="48.0" stroke="BLACK"
-               strokeType="INSIDE" strokeWidth="0.0" width="190.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#759bbf" height="48.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="190.0" />
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Consultify">
                <font>
                   <Font name="Avenir Next Demi Bold" size="22.0" />
@@ -27,50 +22,40 @@
             </Text>
          </children>
       </StackPane>
-      <VBox alignment="CENTER" maxHeight="504.0" maxWidth="190.0" prefHeight="504.0"
-         prefWidth="190.0" spacing="30.0" style="-fx-background-color: #7dc1e1;">
+      <VBox alignment="CENTER" maxHeight="504.0" maxWidth="190.0" prefHeight="504.0" prefWidth="190.0" spacing="30.0" style="-fx-background-color: #8dabc8;">
          <children>
-            <Text fx:id="homeText" fill="WHITE" onMouseClicked="#clickPage" strokeType="OUTSIDE"
-               strokeWidth="0.0" text="Home">
+            <Text fx:id="homeText" fill="WHITE" onMouseClicked="#clickPage" strokeType="OUTSIDE" strokeWidth="0.0" text="Home">
                <font>
-                  <Font name="Avenir Next Demi Bold" size="25.0" />
+                  <Font name="Avenir Light" size="25.0" />
                </font>
             </Text>
-            <Text fx:id="bookAppointmentText" fill="WHITE" onMouseClicked="#clickPage"
-               strokeType="OUTSIDE" strokeWidth="0.0" text="Book Appointment" textAlignment="CENTER"
-               wrappingWidth="169.32536745135036">
+            <Text fx:id="bookAppointmentText" fill="WHITE" onMouseClicked="#clickPage" strokeType="OUTSIDE" strokeWidth="0.0" text="Book Appointment" textAlignment="CENTER" wrappingWidth="169.32536745135036">
                <font>
-                  <Font name="Avenir Next Demi Bold" size="25.0" />
+                  <Font name="Avenir Light" size="25.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
             </Text>
-            <Text fx:id="rescheduleText" fill="WHITE" onMouseClicked="#clickPage"
-               strokeType="OUTSIDE" strokeWidth="0.0" text="Reschedule" textAlignment="CENTER"
-               wrappingWidth="169.32536745135036">
+            <Text fx:id="rescheduleText" fill="WHITE" onMouseClicked="#clickPage" strokeType="OUTSIDE" strokeWidth="0.0" text="Reschedule" textAlignment="CENTER" wrappingWidth="169.32536745135036">
                <font>
-                  <Font name="Avenir Next Demi Bold" size="25.0" />
+                  <Font name="Avenir Light" size="25.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
             </Text>
-            <Text fx:id="historyText" fill="WHITE" onMouseClicked="#clickPage" strokeType="OUTSIDE"
-               strokeWidth="0.0" text="History" textAlignment="CENTER"
-               wrappingWidth="169.32536745135036">
+            <Text fx:id="historyText" fill="WHITE" onMouseClicked="#clickPage" strokeType="OUTSIDE" strokeWidth="0.0" text="History" textAlignment="CENTER" wrappingWidth="169.32536745135036">
                <font>
-                  <Font name="Avenir Next Demi Bold" size="25.0" />
+                  <Font name="Avenir Light" size="25.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
             </Text>
-            <Text fx:id="feedbackText" fill="WHITE" onMouseClicked="#clickPage" strokeType="OUTSIDE"
-               strokeWidth="0.0" text="Feedback" textAlignment="CENTER"
-               wrappingWidth="169.32536745135036">
+            <Text fx:id="feedbackText" fill="WHITE" onMouseClicked="#clickPage" strokeType="OUTSIDE" strokeWidth="0.0" text="Feedback" textAlignment="CENTER" wrappingWidth="169.32536745135036">
                <font>
-                  <Font name="Avenir Next Demi Bold" size="25.0" />
+                  <Font name="Avenir Light" size="25.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
@@ -80,18 +65,15 @@
       </VBox>
       <StackPane alignment="BOTTOM_LEFT" maxWidth="190.0" prefHeight="48.0" prefWidth="190.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#759bbf" height="48.0" stroke="BLACK"
-               strokeType="INSIDE" strokeWidth="0.0" width="190.0" />
-            <HBox alignment="CENTER" maxWidth="190.0" prefHeight="100.0" prefWidth="190.0"
-               spacing="10.0" StackPane.alignment="TOP_RIGHT">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#759bbf" height="48.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="190.0" />
+            <HBox alignment="CENTER" maxWidth="190.0" prefHeight="100.0" prefWidth="190.0" spacing="10.0" StackPane.alignment="TOP_RIGHT">
                <children>
                   <ImageView fitHeight="32.0" fitWidth="35.0" pickOnBounds="true" style="-fx-: 10;">
                      <image>
                         <Image url="@images/nopfp.jpg" />
                      </image>
                   </ImageView>
-                  <Text fx:id="username" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0"
-                     text="username">
+                  <Text fx:id="username" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="username">
                      <font>
                         <Font name="Avenir Next Demi Bold" size="17.0" />
                      </font>

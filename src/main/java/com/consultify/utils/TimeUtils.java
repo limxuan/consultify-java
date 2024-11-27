@@ -2,6 +2,8 @@ package com.consultify.utils;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -39,5 +41,33 @@ public class TimeUtils {
   public static String getDate(String timeInISO) {
     Date time = convertISOToDate(timeInISO);
     return new SimpleDateFormat("dd/MM/yyyy").format(time);
+  }
+
+  public static LocalDate parseDate(String date) {
+    if (date == null) {
+      return null;
+    }
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    return LocalDate.parse(date, formatter);
+  }
+
+  public static String formatDate(LocalDate date) {
+    if (date == null) {
+      return null;
+    }
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    return date.format(formatter);
+  }
+
+  public static boolean inBetween(String date, String startDate, String endDate) {
+    if (date == null || startDate == null || endDate == null) {
+      return false;
+    }
+
+    LocalDate parsedDate = parseDate(date);
+    LocalDate parsedStartDate = parseDate(startDate);
+    LocalDate parsedEndDate = parseDate(endDate);
+
+    return !parsedDate.isBefore(parsedStartDate) && !parsedDate.isAfter(parsedEndDate);
   }
 }

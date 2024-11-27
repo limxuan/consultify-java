@@ -50,11 +50,10 @@ public class StudentSidebarComponentController {
 
   public void clickPage(MouseEvent e) {
     String page = ((Text) e.getSource()).getText();
-    String formattedRole = StringUtils.capitalize(UserSession.getRole());
     String formattedPage = page.replaceAll("\\s", "");
     try {
-      System.out.println("Redirecting to: " + formattedRole + formattedPage);
-      SceneSwitcher.switchTo(formattedRole + formattedPage + "Page.fxml", page);
+      System.out.println("Redirecting to: " + "Student" + formattedPage + "Page.fxml");
+      SceneSwitcher.switchTo("Student" + formattedPage + "Page.fxml", page);
     } catch (Exception err) {
       err.printStackTrace();
     }
