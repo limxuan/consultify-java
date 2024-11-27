@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -44,5 +43,16 @@ public class SlotService {
 
     System.out.println(Arrays.asList(uniqueLecturers, uniqueDates));
     return Arrays.asList(uniqueLecturers, uniqueDates);
+  }
+
+  public void setAvailable(String slotId, String available) {
+    ArrayList<String[]> records = slotDatabaseService.parseContent();
+    for (String[] record : records) {
+      if (record[0].equals(slotId)) {
+        record[4] = available;
+        break;
+      }
+    }
+    slotDatabaseService.saveData(records);
   }
 }

@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Text?>
 
-<VBox fx:id="appointmentItem" prefHeight="131.0" prefWidth="507.0" style="-fx-border-color: black; -fx-border-radius: 20px;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.consultify.controller.AppointmentItemController">
+<VBox fx:id="appointmentItem" prefHeight="131.0" prefWidth="507.0" style="-fx-background-color: white; -fx-background-radius: 10px;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.consultify.controller.AppointmentItemController">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="519.0" VBox.vgrow="NEVER">
          <children>

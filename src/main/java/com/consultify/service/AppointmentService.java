@@ -1,10 +1,11 @@
 package com.consultify.service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
+
+import com.consultify.constants.AppointmentStatus;
 import com.consultify.utils.TimeUtils;
 
 public class AppointmentService {
@@ -24,6 +25,22 @@ public class AppointmentService {
 
     return records.stream().filter(record -> record[1].equals(UserSession.getUserId()))
         .collect(Collectors.toCollection(ArrayList::new));
+  }
+
+  public void createAppointment(String slotId, String reason) {
+    ArrayList<String[]> records = appointmentDatabaseService.parseContent();
+
+    String appointmentId = UUID.randomUUID().toString();
+    String studentId = UserSession.getUserId();
+    if (reason.trim().length() == 0) {
+      reason = null;
+    }
+
+    String[] newRecord = new String[] { appointmentId, studentId, slotId, reason, AppointmentStatus.PENDING_APPROVAL,
+        TimeUtils.getCurrentTimeInISO() };
+    records.add(newRecord);
+    appointmentDatabaseService.saveData(records);
+    slotService.setAvailable(slotId, "false");
   }
 
 }

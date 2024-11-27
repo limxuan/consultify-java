@@ -106,21 +106,23 @@ public class StudentBookAppointmentController extends StudentSidebarBaseControll
       y = i / numColumns;
 
       String[] slot = slots.get(i);
+      String slotId = slot[0];
       String[] lecturerInfo = new UserService().getLecturerById(slot[1]);
       String lecturerFullName = lecturerInfo[5];
       String lecturerVenue = lecturerInfo[6];
       String formattedTime = TimeUtils.getTime(slot[2]) + " to " + TimeUtils.getTime(slot[3]);
       String formattedDate = TimeUtils.getDate(slot[2]);
-      addAppointmentItem(lecturerFullName, formattedTime, formattedDate, lecturerVenue, x, y);
+      addAppointmentItem(slotId, lecturerFullName, formattedTime, formattedDate, lecturerVenue, x, y);
     }
   }
 
-  private void addAppointmentItem(String fullName, String time, String date, String venue, int x, int y) {
+  private void addAppointmentItem(String slotId, String fullName, String time, String date, String venue, int x,
+      int y) {
     try {
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/consultify/BookAppointmentItem.fxml"));
       Parent appointmentItem = loader.load();
       BookAppointmentItemController itemController = loader.getController();
-      itemController.setAppointmentDetails(fullName, time, date, venue);
+      itemController.setAppointmentDetails(slotId, fullName, time, date, venue);
       this.entryGridPane.add(appointmentItem, x, y);
     } catch (IOException e) {
       System.out.println("Error loading UpcomingAppointmentItem.fxml: " + e.getMessage());
