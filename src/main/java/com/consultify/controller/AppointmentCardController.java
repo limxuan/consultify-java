@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import com.consultify.service.AppointmentService;
+import com.consultify.service.RescheduleService;
 import com.consultify.service.SlotService;
 import com.consultify.service.UserService;
 import com.consultify.utils.SceneSwitcher;
@@ -54,6 +55,7 @@ public class AppointmentCardController {
   private AppointmentService appointmentService = new AppointmentService();
   private SlotService slotService = new SlotService();
   private UserService userService = new UserService();
+  private RescheduleService resheduleService = new RescheduleService();
 
   public void init(String appointmentId) {
     // HACK:
@@ -202,7 +204,11 @@ public class AppointmentCardController {
   }
 
   private void handleRescheduleSelection(String slotId, String reason) {
-    System.out.println("Rescheduled Slot ID: " + slotId);
-    System.out.println("Reason for rescheduling: " + reason);
+    this.resheduleService.createReschedule(this.appointmentId, slotId, reason);
+    try {
+      SceneSwitcher.switchTo("StudentHomePage.fxml", "Home");
+    } catch (Exception ex) {
+      ex.printStackTrace();
+    }
   }
 }

@@ -18,7 +18,9 @@ public class AppointmentService {
 
   public ArrayList<String[]> getUpcomingAppointments() {
     ArrayList<String[]> appointments = this.getCurrentSessionAppointmentsForSession();
-    List<String> validStatuses = List.of("Pending Approval", "Approved");
+    List<String> validStatuses = List.of(AppointmentStatus.PENDING_APPROVAL,
+        AppointmentStatus.RESCHEDULED_PENDING_APPROVAL, AppointmentStatus.APPROVED,
+        AppointmentStatus.RESCHEDULED_APPROVED);
     return appointments.stream().filter(
         record -> validStatuses.contains(record[4]) && TimeUtils.isBefore(slotService.getSlotFromId(record[2])[2]))
         .collect(Collectors.toCollection(ArrayList::new));
@@ -41,8 +43,9 @@ public class AppointmentService {
     }
 
     String[] newRecord = new String[] { appointmentId, studentId, slotId, reason, AppointmentStatus.PENDING_APPROVAL,
-        TimeUtils.getCurrentTimeInISO(), "" };
+        TimeUtils.getCurrentTimeInISO() };
     records.add(newRecord);
+    System.out.println("---------> new record" + Arrays.toString(newRecord));
     appointmentDatabaseService.saveData(records);
     slotService.setAvailable(slotId, "false");
   }
@@ -53,6 +56,11 @@ public class AppointmentService {
     for (String[] record : records) {
       if (record[0].equals(appointmentId)) {
         String slotId = record[2];
+        if (record[4].equals(AppointmentStatus.RESCHEDULED_PENDING_APPROVAL)) {
+          System.out.println("approved did the things");
+          RescheduleService rescheduleService = new RescheduleService();
+          rescheduleService.cancelReschedule(appointmentId);
+        }
         record[4] = AppointmentStatus.CANCELLED;
 
         slotService.setAvailable(slotId, "true");
@@ -60,6 +68,7 @@ public class AppointmentService {
       }
     }
     appointmentDatabaseService.saveData(records);
+
   }
 
   public String[] getAppointmentById(String id) {

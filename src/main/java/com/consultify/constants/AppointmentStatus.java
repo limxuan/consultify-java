@@ -3,7 +3,7 @@ package com.consultify.constants;
 public final class AppointmentStatus {
   public static final String PENDING_APPROVAL = "Pending Approval";
   public static final String APPROVED = "Approved";
-  public static final String RESCHEDULED_APPROVED = "Rescheduled";
+  public static final String RESCHEDULED_APPROVED = "Approved (Rescheduled)";
   public static final String RESCHEDULED_PENDING_APPROVAL = "Pending Approval (Reschedule)";
   public static final String CANCELLED = "Cancelled";
   public static final String REJECTED = "Rejected";

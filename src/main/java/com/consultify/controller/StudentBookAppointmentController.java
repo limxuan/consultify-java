@@ -46,7 +46,6 @@ public class StudentBookAppointmentController extends StudentSidebarBaseControll
   private UserService userService = new UserService();
 
   private String[] uniqueLecturers;
-  private String[] uniqueDates;
 
   private Map<String, String> currentFilters = new HashMap<>();
 
@@ -64,7 +63,6 @@ public class StudentBookAppointmentController extends StudentSidebarBaseControll
     ArrayList<String[]> slots = this.slotService.getAvailableSlots();
     List<Set<String>> unique = this.slotService.getUniqueLecturersAndDates(slots);
     uniqueLecturers = unique.get(0).toArray(new String[0]);
-    uniqueDates = unique.get(1).toArray(new String[0]);
     System.out.println("Size of slots" + slots.size());
 
     System.out.println("before stream" + slots.size());

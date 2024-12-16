@@ -4,6 +4,7 @@ import com.consultify.constants.AppointmentStatus;
 import com.consultify.service.AppointmentService;
 import com.consultify.service.SlotService;
 import com.consultify.service.UserService;
+import com.consultify.utils.SceneSwitcher;
 import com.consultify.utils.TimeUtils;
 
 import javafx.fxml.FXML;

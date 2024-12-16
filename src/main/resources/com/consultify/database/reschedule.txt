@@ -1,1 +1,2 @@
 rescheduleId|appointmentId|reason|status|createdAt
+45374307-448e-463c-a391-68a0cb33b8c5|a74f6b59-d150-4d3e-ad9e-d9ba1bdbbc40|SL015|bybeybe|Cancelled|2024-12-16T19:52
