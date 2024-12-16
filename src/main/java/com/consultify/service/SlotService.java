@@ -55,4 +55,10 @@ public class SlotService {
     }
     slotDatabaseService.saveData(records);
   }
+
+  public ArrayList<String[]> getAvailableSlotsForLecturer(String lecturerId) {
+    ArrayList<String[]> records = slotDatabaseService.parseContent();
+    return records.stream().filter(record -> record[1].equals(lecturerId) && record[4].equals("true"))
+        .collect(Collectors.toCollection(ArrayList::new));
+  }
 }

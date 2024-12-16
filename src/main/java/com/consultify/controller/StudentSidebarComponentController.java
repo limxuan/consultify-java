@@ -21,14 +21,11 @@ public class StudentSidebarComponentController {
   @FXML
   private Text historyText;
 
-  @FXML
-  private Text feedbackText;
-
   private String selectedColor = "#394368";
 
   public void updateCurrentPage(String currentPage) {
     ArrayList<Text> texts = new ArrayList<>(
-        Arrays.asList(homeText, bookAppointmentText, historyText, feedbackText));
+        Arrays.asList(homeText, bookAppointmentText, historyText));
     for (Text text : texts) {
       if (text.getText().equals(currentPage)) { // Use equals for string comparison
         text.setStyle("-fx-fill: " + selectedColor);

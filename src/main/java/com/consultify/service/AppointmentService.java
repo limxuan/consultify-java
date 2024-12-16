@@ -20,15 +20,15 @@ public class AppointmentService {
     ArrayList<String[]> appointments = this.getCurrentSessionAppointmentsForSession();
     List<String> validStatuses = List.of("Pending Approval", "Approved");
     return appointments.stream().filter(
-      record -> validStatuses.contains(record[4]) && TimeUtils.isBefore(slotService.getSlotFromId(record[2])[2]))
-    .collect(Collectors.toCollection(ArrayList::new));
+        record -> validStatuses.contains(record[4]) && TimeUtils.isBefore(slotService.getSlotFromId(record[2])[2]))
+        .collect(Collectors.toCollection(ArrayList::new));
   }
 
   public ArrayList<String[]> getCurrentSessionAppointmentsForSession() {
     ArrayList<String[]> records = appointmentDatabaseService.parseContent();
 
     return records.stream().filter(record -> record[1].equals(UserSession.getUserId()))
-    .collect(Collectors.toCollection(ArrayList::new));
+        .collect(Collectors.toCollection(ArrayList::new));
   }
 
   public void createAppointment(String slotId, String reason) {
@@ -41,7 +41,7 @@ public class AppointmentService {
     }
 
     String[] newRecord = new String[] { appointmentId, studentId, slotId, reason, AppointmentStatus.PENDING_APPROVAL,
-      TimeUtils.getCurrentTimeInISO(), ""};
+        TimeUtils.getCurrentTimeInISO(), "" };
     records.add(newRecord);
     appointmentDatabaseService.saveData(records);
     slotService.setAvailable(slotId, "false");
@@ -77,10 +77,11 @@ public class AppointmentService {
     public Set<String> uniqueStatuses;
     public Set<String> uniqueLecturers;
 
-    public PastAppointmentsResult(ArrayList<String[]> pastAppointments, Set<String> uniqueLecturers, Set<String> uniqueStatuses) {
+    public PastAppointmentsResult(ArrayList<String[]> pastAppointments, Set<String> uniqueLecturers,
+        Set<String> uniqueStatuses) {
       this.appointments = pastAppointments;
       this.uniqueLecturers = uniqueLecturers;
-      this.uniqueStatuses = uniqueStatuses; 
+      this.uniqueStatuses = uniqueStatuses;
     }
   }
 
@@ -89,36 +90,35 @@ public class AppointmentService {
     Set<String> uniqueLecturers = new HashSet<>();
     Set<String> uniqueStatuses = new HashSet<>();
 
-    String[] validStatuses = {AppointmentStatus.RESCHEDULED, AppointmentStatus.CANCELLED, AppointmentStatus.REJECTED};
+    String[] validStatuses = { AppointmentStatus.RESCHEDULED_APPROVED, AppointmentStatus.CANCELLED,
+        AppointmentStatus.REJECTED, AppointmentStatus.RESCHEDULED_PENDING_APPROVAL };
     ArrayList<String[]> pastAppointments = new ArrayList<>();
 
     for (String[] record : records) {
       String slotId = record[2];
       String[] slot = slotService.getSlotFromId(slotId);
-      
-      if (slot != null && record[1].equals(studentId)){
-        if(TimeUtils.isPast(slot[3]) || Arrays.asList(validStatuses).contains(record[4])) {
+
+      if (slot != null && record[1].equals(studentId)) {
+        if (TimeUtils.isPast(slot[3]) || Arrays.asList(validStatuses).contains(record[4])) {
           System.out.println(slot[3]);
           System.out.println("past ady " + TimeUtils.isPast(slot[3]));
           uniqueStatuses.add(record[4]);
-          String [] lecturer = userService.getLecturerById(slot[1]);
+          String[] lecturer = userService.getLecturerById(slot[1]);
           uniqueLecturers.add(lecturer[5]);
           pastAppointments.add(record);
         }
 
-
       }
     }
     return new PastAppointmentsResult(pastAppointments, uniqueLecturers, uniqueStatuses);
-  } 
+  }
 
   public void addFeedback(String appointmentId, String feedback) {
     ArrayList<String[]> records = appointmentDatabaseService.parseContent();
     for (int i = 0; i < records.size(); i++) {
       String[] record = records.get(i);
       System.out.println(Arrays.toString(
-        record
-      ));
+          record));
       if (record[0].equals(appointmentId)) {
         if (record.length == 6) {
           String[] newRecord = Arrays.copyOf(record, record.length + 1);
@@ -127,6 +127,17 @@ public class AppointmentService {
         } else {
           record[6] = feedback;
         }
+        break;
+      }
+    }
+    appointmentDatabaseService.saveData(records);
+  }
+
+  public void updateStatus(String appointmentId, String status) {
+    ArrayList<String[]> records = appointmentDatabaseService.parseContent();
+    for (String[] record : records) {
+      if (record[0].equals(appointmentId)) {
+        record[4] = status;
         break;
       }
     }
