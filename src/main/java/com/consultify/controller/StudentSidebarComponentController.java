@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import com.consultify.service.UserSession;
 import com.consultify.utils.SceneSwitcher;
-import com.consultify.utils.StringUtils;
 
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
@@ -21,9 +19,6 @@ public class StudentSidebarComponentController {
   private Text bookAppointmentText;
 
   @FXML
-  private Text rescheduleText;
-
-  @FXML
   private Text historyText;
 
   @FXML
@@ -33,7 +28,7 @@ public class StudentSidebarComponentController {
 
   public void updateCurrentPage(String currentPage) {
     ArrayList<Text> texts = new ArrayList<>(
-        Arrays.asList(homeText, bookAppointmentText, rescheduleText, historyText, feedbackText));
+        Arrays.asList(homeText, bookAppointmentText, historyText, feedbackText));
     for (Text text : texts) {
       if (text.getText().equals(currentPage)) { // Use equals for string comparison
         text.setStyle("-fx-fill: " + selectedColor);
@@ -61,5 +56,9 @@ public class StudentSidebarComponentController {
 
   public void redirectBookAppointment(MouseEvent e) throws IOException {
     SceneSwitcher.switchTo("StudentBookAppointmentPage.fxml", "Book Appointment");
+  }
+
+  public void redirectHistory(MouseEvent e) throws IOException {
+    SceneSwitcher.switchTo("StudentHistoryPage.fxml", "History");
   }
 }

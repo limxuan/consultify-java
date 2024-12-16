@@ -82,7 +82,7 @@ public class StudentBookAppointmentController extends StudentSidebarBaseControll
       if (filterStartDate == null && filterEndDate == null) {
         validDate = true;
       } else if (filterStartDate != null && filterEndDate == null) {
-        validDate = filterStartDate == TimeUtils.getDate(slot[2]);
+        validDate = filterStartDate.equals(TimeUtils.getDate(slot[2]));
       } else {
         validDate = TimeUtils.inBetween(TimeUtils.getDate(slot[2]), filterStartDate, filterEndDate);
       }

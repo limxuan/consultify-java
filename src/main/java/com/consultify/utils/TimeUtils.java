@@ -2,8 +2,10 @@ package com.consultify.utils;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -69,5 +71,19 @@ public class TimeUtils {
     LocalDate parsedEndDate = parseDate(endDate);
 
     return !parsedDate.isBefore(parsedStartDate) && !parsedDate.isAfter(parsedEndDate);
+  }
+
+  public static Long daysFromNow(String date) {
+    try {
+      Date parsedDate = convertISOToDate(date);
+      Date now = new Date();
+      Instant parsedInstant = parsedDate.toInstant();
+      Instant nowInstant = now.toInstant();
+
+      long days = ChronoUnit.DAYS.between(nowInstant, parsedInstant);
+      return days;
+    } catch (Exception e) {
+      return null;
+    }
   }
 }

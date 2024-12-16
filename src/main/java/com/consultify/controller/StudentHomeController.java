@@ -34,6 +34,7 @@ public class StudentHomeController extends StudentSidebarBaseController {
     for (String[] appointment : appointments) {
       String[] slot = slotService.getSlotFromId(appointment[2]);
       String[] lecturer = userService.getLecturerById(slot[1]);
+      String appointmentId = appointment[0];
       String lecturerFullName = lecturer[5];
       String slotStart = slot[2];
       String slotEnd = slot[3];
@@ -41,17 +42,18 @@ public class StudentHomeController extends StudentSidebarBaseController {
           + TimeUtils.getDate(slotStart) + ")";
       ;
       String officeLocation = lecturer[6];
-      addAppointmentItem(lecturerFullName, appointment[3], formatTime, officeLocation, appointment[4]);
+      addAppointmentItem(appointmentId, lecturerFullName, appointment[3], formatTime, officeLocation, appointment[4]);
     }
 
   }
 
-  private void addAppointmentItem(String fullName, String purpose, String time, String venue, String status) {
+  private void addAppointmentItem(String appointmentId, String fullName, String purpose, String time, String venue,
+      String status) {
     try {
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/consultify/UpcomingAppointmentItem.fxml"));
       Parent appointmentItem = loader.load();
       AppointmentItemController itemController = loader.getController();
-      itemController.setAppointmentDetails(fullName, purpose, time, venue, status);
+      itemController.setAppointmentDetails(appointmentId, fullName, purpose, time, venue, status);
       appointmentsVBox.getChildren().add(appointmentItem);
     } catch (IOException e) {
       System.out.println("Error loading UpcomingAppointmentItem.fxml: " + e.getMessage());

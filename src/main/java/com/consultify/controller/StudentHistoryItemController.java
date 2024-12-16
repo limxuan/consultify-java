@@ -1,3 +1,4 @@
+
 package com.consultify.controller;
 
 import com.consultify.constants.AppointmentStatus;
@@ -14,7 +15,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class AppointmentItemController {
+public class StudentHistoryItemController {
 
   @FXML
   private VBox appointmentItem;
@@ -91,9 +92,9 @@ public class AppointmentItemController {
 
   public void onClick(MouseEvent event) {
     try {
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/consultify/AppointmentCard.fxml"));
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/consultify/HistoryAppointmentCard.fxml"));
       Parent root = loader.load();
-      AppointmentCardController controller = loader.getController();
+      HistoryAppointmentCardController controller = loader.getController();
       controller.init(appointmentId);
 
       Stage stage = new Stage();
