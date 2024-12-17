@@ -46,12 +46,4 @@ public class StudentSidebarComponentController {
       err.printStackTrace();
     }
   }
-
-  public void redirectBookAppointment(MouseEvent e) throws IOException {
-    SceneSwitcher.switchTo("StudentBookAppointmentPage.fxml", "Book Appointment");
-  }
-
-  public void redirectHistory(MouseEvent e) throws IOException {
-    SceneSwitcher.switchTo("StudentHistoryPage.fxml", "History");
-  }
 }
