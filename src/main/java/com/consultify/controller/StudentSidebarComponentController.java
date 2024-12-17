@@ -36,10 +36,6 @@ public class StudentSidebarComponentController {
     }
   }
 
-  public void redirectHome(MouseEvent e) throws IOException {
-    SceneSwitcher.switchTo("StudentHomePage.fxml", "Home");
-  }
-
   public void clickPage(MouseEvent e) {
     String page = ((Text) e.getSource()).getText();
     String formattedPage = page.replaceAll("\\s", "");
