@@ -30,7 +30,10 @@ public class HistoryAppointmentCardController {
   private Text purposeValue;
 
   @FXML
-  private Text feedbackValue;
+  private Text studentFeedbackValue;
+
+  @FXML
+  private Text lecturerFeedbackValue;
 
   @FXML
   private Button feedbackBtn;
@@ -92,9 +95,14 @@ public class HistoryAppointmentCardController {
     purposeValue.setText(purpose);
 
     String studentFeedback = appointmentService.getFeedback(appointmentId, true);
-    boolean gaveFeedback = studentFeedback != null;
-    feedbackValue.setText(gaveFeedback ? studentFeedback : "None provided");
-    if (appointmentRecord[4].equals(AppointmentStatus.APPROVED) && !gaveFeedback) {
+    boolean studentGaveFeedback = studentFeedback != null;
+    studentFeedbackValue.setText(studentGaveFeedback ? studentFeedback : "None provided");
+
+    String lecturerFeedback = appointmentService.getFeedback(appointmentId, false);
+    boolean lecturerGaveFeedback = lecturerFeedback != null;
+    lecturerFeedbackValue.setText(lecturerGaveFeedback ? lecturerFeedback : "None provided");
+
+    if (appointmentRecord[4].equals(AppointmentStatus.APPROVED) && !studentGaveFeedback) {
       feedbackBtn.setDisable(false);
     } else {
       feedbackBtn.setDisable(true);
@@ -109,7 +117,7 @@ public class HistoryAppointmentCardController {
     dialog.setContentText("Feedback:");
     dialog.showAndWait().ifPresent(feedback -> {
       appointmentService.addFeedback(appointmentId, feedback, true);
-      feedbackValue.setText(feedback);
+      studentFeedbackValue.setText(feedback);
       feedbackBtn.setDisable(true);
     });
   }
