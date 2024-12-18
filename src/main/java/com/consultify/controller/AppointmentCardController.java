@@ -4,10 +4,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
 
+import com.consultify.constants.Role;
 import com.consultify.service.AppointmentService;
 import com.consultify.service.RescheduleService;
 import com.consultify.service.SlotService;
 import com.consultify.service.UserService;
+import com.consultify.service.UserSession;
 import com.consultify.utils.SceneSwitcher;
 import com.consultify.utils.TimeUtils;
 
@@ -61,6 +63,13 @@ public class AppointmentCardController {
   private RescheduleService resheduleService = new RescheduleService();
 
   public void init(String appointmentId) {
+    if (UserSession.getRole() != Role.STUDENT) {
+      cancelBtn.setVisible(false); // Makes the button invisible
+      cancelBtn.setManaged(false); // Excludes the button from the layout
+
+      rescheduleBtn.setVisible(false); // Makes the button invisible
+      rescheduleBtn.setManaged(false); // Excludes the button from the layout
+    }
     // HACK:
     System.out.println("Debug: init called with appointmentId = " + appointmentId);
 
@@ -163,8 +172,8 @@ public class AppointmentCardController {
 
     ComboBox<String> timeSlotComboBox = new ComboBox<>();
     for (String[] slot : availableSlots) {
-      String slotInfo = slot[0] + " (" + TimeUtils.getTime(slot[2]) + " - " + TimeUtils.getTime(slot[3]) + " @ "
-          + TimeUtils.getDate(slot[3]) + ")";
+      String slotInfo = TimeUtils.getTime(slot[2]) + " - " + TimeUtils.getTime(slot[3]) + " @ "
+          + TimeUtils.getDate(slot[3]) + " -> " + slot[0];
 
       timeSlotComboBox.getItems().add(slotInfo);
     }
@@ -183,7 +192,7 @@ public class AppointmentCardController {
       String selectedSlot = timeSlotComboBox.getValue();
       String reason = reasonTextArea.getText();
       if (selectedSlot != null && !reason.isEmpty()) {
-        String selectedSlotId = selectedSlot.split(" ")[0];
+        String selectedSlotId = selectedSlot.split(" -> ")[1];
         System.out.println("Selected Slot: " + selectedSlotId);
         System.out.println("Reason: " + reason);
         stage.close();

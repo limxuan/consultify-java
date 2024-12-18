@@ -3,6 +3,7 @@ package com.consultify.controller;
 import java.util.Optional;
 
 import com.consultify.service.AppointmentService;
+import com.consultify.service.UserSession;
 import com.consultify.utils.SceneSwitcher;
 
 import javafx.fxml.FXML;
@@ -131,7 +132,7 @@ public class BookAppointmentItemController {
     // Show dialog and handle responsestudent
     Optional<String> result = dialog.showAndWait();
     result.ifPresent(reason -> {
-      appointmentService.createAppointment(slotId, reason);
+      appointmentService.createAppointment(slotId, reason, UserSession.getUserId());
       new Alert(Alert.AlertType.INFORMATION, "Appointment booked successfully!").show();
       try {
         SceneSwitcher.switchTo("StudentHomePage.fxml", "Home");

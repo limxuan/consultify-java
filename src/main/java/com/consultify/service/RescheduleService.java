@@ -45,10 +45,10 @@ public class RescheduleService {
     rescheduleDatabaseService.saveData(records);
   }
 
-  public String[] getRescheduleById(String id) {
+  public String[] getRescheduleByAppointmentId(String id) {
     ArrayList<String[]> records = rescheduleDatabaseService.parseContent();
     for (String[] record : records) {
-      if (record[0].equals(id)) {
+      if (record[1].equals(id)) {
         return record;
       }
     }
@@ -61,16 +61,24 @@ public class RescheduleService {
     rescheduleDatabaseService.saveData(records);
   }
 
-  public void acceptReschedule(String rescheduleId) {
-    String[] rescheduleRecord = this.getRescheduleById(rescheduleId);
-    String appointmentId = rescheduleRecord[1];
+  public void acceptReschedule(String appointmentId) {
+    String[] rescheduleRecord = this.getRescheduleByAppointmentId(appointmentId);
     String oldSlotId = this.appointmentService.getAppointmentById(appointmentId)[2];
     String slotId = rescheduleRecord[2];
     String reason = rescheduleRecord[3];
-    String newAptId = this.appointmentService.createAppointment(slotId, reason + "(Rescheduled)");
+    String newAptId = this.appointmentService.createAppointment(slotId, reason + "(Rescheduled)",
+        this.appointmentService.getAppointmentById(appointmentId)[1]);
     this.appointmentService.updateStatus(appointmentId, AppointmentStatus.RESCHEDULED_SUCCESSFUL);
     this.appointmentService.updateStatus(newAptId, AppointmentStatus.RESCHEDULED_APPROVED);
-    removeRescheduleRow(rescheduleId);
+    removeRescheduleRow(appointmentId);
     this.slotService.setAvailable(oldSlotId, "true");
+  }
+
+  public void rejectReschedule(String appointmentId) {
+    String[] rescheduleRecord = this.getRescheduleByAppointmentId(appointmentId);
+    String slotId = rescheduleRecord[2];
+    this.appointmentService.updateStatus(appointmentId, AppointmentStatus.APPROVED_RESCHEDULE_REJECTED);
+    removeRescheduleRow(appointmentId);
+    this.slotService.setAvailable(slotId, "true");
   }
 }

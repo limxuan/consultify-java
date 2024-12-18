@@ -34,16 +34,16 @@ public class LecturerHomeController extends LecturerSidebarBaseController {
 
     for (String[] appointment : appointments) {
       String[] slot = slotService.getSlotFromId(appointment[2]);
-      String[] lecturer = userService.getLecturerById(slot[1]);
+      String[] student = userService.getStudentById(appointment[1]);
       String appointmentId = appointment[0];
-      String lecturerFullName = lecturer[5];
+      String studentFullName = student[6];
       String slotStart = slot[2];
       String slotEnd = slot[3];
       String formatTime = TimeUtils.getTime(slotStart) + " to " + TimeUtils.getTime(slotEnd) + " ("
           + TimeUtils.getDate(slotStart) + ")";
       ;
-      String officeLocation = lecturer[6];
-      addAppointmentItem(appointmentId, lecturerFullName, appointment[3], formatTime, officeLocation, appointment[4]);
+      String officeLocation = student[6];
+      addAppointmentItem(appointmentId, studentFullName, appointment[3], formatTime, officeLocation, appointment[4]);
     }
 
   }

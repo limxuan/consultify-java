@@ -25,6 +25,19 @@ public class AppointmentService {
     if (isStudent) {
       validStatuses.add(AppointmentStatus.PENDING_APPROVAL);
       validStatuses.add(AppointmentStatus.RESCHEDULED_PENDING_APPROVAL);
+      validStatuses.add(AppointmentStatus.APPROVED_RESCHEDULE_REJECTED);
+    }
+
+    for (String[] record : appointments) {
+      String status = record[4];
+      String slotId = record[2];
+      String slotTime = slotService.getSlotFromId(slotId)[2];
+
+      System.out.println("Record ID: " + record[0]); // Print record ID for debugging
+      System.out.println("Status: " + status); // Print the status
+      System.out.println("Slot ID: " + slotId); // Print the slot ID
+      System.out.println("Slot Time: " + slotTime); // Print the slot time
+
     }
 
     return appointments.stream().filter(
@@ -54,11 +67,10 @@ public class AppointmentService {
     }).collect(Collectors.toCollection(ArrayList::new));
   }
 
-  public String createAppointment(String slotId, String reason) {
+  public String createAppointment(String slotId, String reason, String studentId) {
     ArrayList<String[]> records = appointmentDatabaseService.parseContent();
 
     String appointmentId = UUID.randomUUID().toString();
-    String studentId = UserSession.getUserId();
     if (reason.trim().length() == 0) {
       reason = null;
     }
@@ -184,8 +196,11 @@ public class AppointmentService {
   }
 
   public void approveAppointment(String appointmentId, String status) {
-    if (status.equals(AppointmentStatus.RESCHEDULED_PENDING_APPROVAL)) {
+    String[] appointmentRecord = getAppointmentById(appointmentId);
+    boolean isReschedule = appointmentRecord[4].equals(AppointmentStatus.RESCHEDULED_PENDING_APPROVAL);
+    if (isReschedule) {
       RescheduleService rescheduleService = new RescheduleService();
+      rescheduleService.acceptReschedule(appointmentId);
     } else {
       updateStatus(appointmentId, AppointmentStatus.APPROVED);
     }
