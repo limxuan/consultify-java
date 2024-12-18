@@ -54,4 +54,23 @@ public class RescheduleService {
     }
     return null;
   }
+
+  public void removeRescheduleRow(String id) {
+    ArrayList<String[]> records = rescheduleDatabaseService.parseContent();
+    records.removeIf(record -> record[0].equals(id));
+    rescheduleDatabaseService.saveData(records);
+  }
+
+  public void acceptReschedule(String rescheduleId) {
+    String[] rescheduleRecord = this.getRescheduleById(rescheduleId);
+    String appointmentId = rescheduleRecord[1];
+    String oldSlotId = this.appointmentService.getAppointmentById(appointmentId)[2];
+    String slotId = rescheduleRecord[2];
+    String reason = rescheduleRecord[3];
+    String newAptId = this.appointmentService.createAppointment(slotId, reason + "(Rescheduled)");
+    this.appointmentService.updateStatus(appointmentId, AppointmentStatus.RESCHEDULED_SUCCESSFUL);
+    this.appointmentService.updateStatus(newAptId, AppointmentStatus.RESCHEDULED_APPROVED);
+    removeRescheduleRow(rescheduleId);
+    this.slotService.setAvailable(oldSlotId, "true");
+  }
 }

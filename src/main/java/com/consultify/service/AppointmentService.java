@@ -27,9 +27,16 @@ public class AppointmentService {
       validStatuses.add(AppointmentStatus.RESCHEDULED_PENDING_APPROVAL);
     }
 
-    // print valid statuses
-    System.out.println(validStatuses);
+    return appointments.stream().filter(
+        record -> validStatuses.contains(record[4]) && TimeUtils.isBefore(slotService.getSlotFromId(record[2])[2]))
+        .collect(Collectors.toCollection(ArrayList::new));
+  }
 
+  public ArrayList<String[]> getApprovalAppointments(String lecturerId) {
+    ArrayList<String[]> appointments = this.getAppointmentsForId(lecturerId, false);
+    List<String> validStatuses = new ArrayList<String>(List.of(
+        AppointmentStatus.PENDING_APPROVAL,
+        AppointmentStatus.RESCHEDULED_PENDING_APPROVAL));
     return appointments.stream().filter(
         record -> validStatuses.contains(record[4]) && TimeUtils.isBefore(slotService.getSlotFromId(record[2])[2]))
         .collect(Collectors.toCollection(ArrayList::new));
@@ -47,7 +54,7 @@ public class AppointmentService {
     }).collect(Collectors.toCollection(ArrayList::new));
   }
 
-  public void createAppointment(String slotId, String reason) {
+  public String createAppointment(String slotId, String reason) {
     ArrayList<String[]> records = appointmentDatabaseService.parseContent();
 
     String appointmentId = UUID.randomUUID().toString();
@@ -61,6 +68,8 @@ public class AppointmentService {
     records.add(newRecord);
     appointmentDatabaseService.saveData(records);
     slotService.setAvailable(slotId, "false");
+
+    return appointmentId;
   }
 
   public void cancelAppointment(String appointmentId) {
@@ -70,7 +79,6 @@ public class AppointmentService {
       if (record[0].equals(appointmentId)) {
         String slotId = record[2];
         if (record[4].equals(AppointmentStatus.RESCHEDULED_PENDING_APPROVAL)) {
-          System.out.println("approved did the things");
           RescheduleService rescheduleService = new RescheduleService();
           rescheduleService.cancelReschedule(appointmentId);
         }
@@ -122,8 +130,6 @@ public class AppointmentService {
 
       if (slot != null && record[1].equals(studentId)) {
         if (TimeUtils.isPast(slot[3]) || Arrays.asList(validStatuses).contains(record[4])) {
-          System.out.println(slot[3]);
-          System.out.println("past ady " + TimeUtils.isPast(slot[3]));
           uniqueStatuses.add(record[4]);
           String[] lecturer = userService.getLecturerById(slot[1]);
           uniqueLecturers.add(lecturer[5]);
@@ -171,6 +177,25 @@ public class AppointmentService {
     for (String[] record : records) {
       if (record[0].equals(appointmentId)) {
         record[4] = status;
+        break;
+      }
+    }
+    appointmentDatabaseService.saveData(records);
+  }
+
+  public void approveAppointment(String appointmentId, String status) {
+    if (status.equals(AppointmentStatus.RESCHEDULED_PENDING_APPROVAL)) {
+      RescheduleService rescheduleService = new RescheduleService();
+    } else {
+      updateStatus(appointmentId, AppointmentStatus.APPROVED);
+    }
+  }
+
+  public void updateSlotId(String appointmentId, String slotId) {
+    ArrayList<String[]> records = appointmentDatabaseService.parseContent();
+    for (String[] record : records) {
+      if (record[0].equals(appointmentId)) {
+        record[2] = slotId;
         break;
       }
     }
