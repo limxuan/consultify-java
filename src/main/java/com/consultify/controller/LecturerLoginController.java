@@ -1,20 +1,18 @@
 package com.consultify.controller;
 
-import java.util.Arrays;
-
 import com.consultify.service.UserService;
-import com.consultify.service.UserSession;
+import com.consultify.utils.SceneSwitcher;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.PasswordField;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javafx.scene.Node;
 
 public class LecturerLoginController {
   @FXML
@@ -35,6 +33,15 @@ public class LecturerLoginController {
       return;
     }
     new Alert(Alert.AlertType.INFORMATION, "Signed in as: " + userCredentials[5]).show();
+    redirectLecturerHome();
+  }
+
+  public void redirectLecturerHome() {
+    try {
+      SceneSwitcher.switchTo("LecturerHomePage.fxml", "Home");
+    } catch (Exception err) {
+      err.printStackTrace();
+    }
   }
 
   public void studentLoginTextOnClick(MouseEvent e) {
