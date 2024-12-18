@@ -90,8 +90,11 @@ public class HistoryAppointmentCardController {
     dateValue.setText(date);
     venueValue.setText(venue);
     purposeValue.setText(purpose);
-    feedbackValue.setText(appointmentRecord.length == 7 ? appointmentRecord[6] : "None provided");
-    if (appointmentRecord[4].equals(AppointmentStatus.APPROVED) && appointmentRecord.length == 6) {
+
+    String studentFeedback = appointmentService.getFeedback(appointmentId, true);
+    boolean gaveFeedback = studentFeedback != null;
+    feedbackValue.setText(gaveFeedback ? studentFeedback : "None provided");
+    if (appointmentRecord[4].equals(AppointmentStatus.APPROVED) && !gaveFeedback) {
       feedbackBtn.setDisable(false);
     } else {
       feedbackBtn.setDisable(true);
@@ -105,7 +108,7 @@ public class HistoryAppointmentCardController {
     dialog.setHeaderText("Please enter your feedback:");
     dialog.setContentText("Feedback:");
     dialog.showAndWait().ifPresent(feedback -> {
-      appointmentService.addFeedback(appointmentId, feedback);
+      appointmentService.addFeedback(appointmentId, feedback, true);
       feedbackValue.setText(feedback);
       feedbackBtn.setDisable(true);
     });

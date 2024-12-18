@@ -43,9 +43,8 @@ public class AppointmentService {
     }
 
     String[] newRecord = new String[] { appointmentId, studentId, slotId, reason, AppointmentStatus.PENDING_APPROVAL,
-        TimeUtils.getCurrentTimeInISO() };
+        TimeUtils.getCurrentTimeInISO(), "null", "null" };
     records.add(newRecord);
-    System.out.println("---------> new record" + Arrays.toString(newRecord));
     appointmentDatabaseService.saveData(records);
     slotService.setAvailable(slotId, "false");
   }
@@ -122,24 +121,35 @@ public class AppointmentService {
     return new PastAppointmentsResult(pastAppointments, uniqueLecturers, uniqueStatuses);
   }
 
-  public void addFeedback(String appointmentId, String feedback) {
+  public void addFeedback(String appointmentId, String feedback, boolean isStudentFeedback) {
     ArrayList<String[]> records = appointmentDatabaseService.parseContent();
-    for (int i = 0; i < records.size(); i++) {
-      String[] record = records.get(i);
-      System.out.println(Arrays.toString(
-          record));
+    for (String[] record : records) {
       if (record[0].equals(appointmentId)) {
-        if (record.length == 6) {
-          String[] newRecord = Arrays.copyOf(record, record.length + 1);
-          newRecord[newRecord.length - 1] = feedback;
-          records.set(i, newRecord);
-        } else {
+        if (isStudentFeedback) {
           record[6] = feedback;
+        } else {
+          record[7] = feedback;
         }
         break;
       }
     }
     appointmentDatabaseService.saveData(records);
+  }
+
+  public String getFeedback(String appointmentId, boolean isStudentFeedback) {
+    ArrayList<String[]> records = appointmentDatabaseService.parseContent();
+    for (String[] record : records) {
+      if (record[0].equals(appointmentId)) {
+        int recordIndex = isStudentFeedback ? 6 : 7;
+        String feedback = record[recordIndex];
+        if (feedback.equals("null")) {
+          return null;
+        } else {
+          return feedback;
+        }
+      }
+    }
+    return null;
   }
 
   public void updateStatus(String appointmentId, String status) {
