@@ -1,10 +1,11 @@
 package com.consultify.controller;
 
 import com.consultify.constants.AppointmentStatus;
+import com.consultify.constants.Role;
 import com.consultify.service.AppointmentService;
 import com.consultify.service.SlotService;
 import com.consultify.service.UserService;
-import com.consultify.utils.SceneSwitcher;
+import com.consultify.service.UserSession;
 import com.consultify.utils.TimeUtils;
 
 import javafx.fxml.FXML;
@@ -102,11 +103,10 @@ public class HistoryAppointmentCardController {
     boolean lecturerGaveFeedback = lecturerFeedback != null;
     lecturerFeedbackValue.setText(lecturerGaveFeedback ? lecturerFeedback : "None provided");
 
-    if (appointmentRecord[4].equals(AppointmentStatus.APPROVED) && !studentGaveFeedback) {
-      feedbackBtn.setDisable(false);
-    } else {
-      feedbackBtn.setDisable(true);
-    }
+    boolean isStudent = UserSession.getRole() == Role.STUDENT;
+    boolean feedbackCondition = isStudent ? !studentGaveFeedback : !lecturerGaveFeedback;
+
+    feedbackBtn.setDisable(!(appointmentRecord[4].equals(AppointmentStatus.APPROVED) && feedbackCondition));
     feedbackBtn.setOnMouseClicked(this::handleFeedback);
   }
 
@@ -116,8 +116,13 @@ public class HistoryAppointmentCardController {
     dialog.setHeaderText("Please enter your feedback:");
     dialog.setContentText("Feedback:");
     dialog.showAndWait().ifPresent(feedback -> {
-      appointmentService.addFeedback(appointmentId, feedback, true);
-      studentFeedbackValue.setText(feedback);
+      if (UserSession.getRole() == Role.LECTURER) {
+        appointmentService.addFeedback(appointmentId, feedback, false);
+        lecturerFeedbackValue.setText(feedback);
+      } else {
+        appointmentService.addFeedback(appointmentId, feedback, true);
+        studentFeedbackValue.setText(feedback);
+      }
       feedbackBtn.setDisable(true);
     });
   }

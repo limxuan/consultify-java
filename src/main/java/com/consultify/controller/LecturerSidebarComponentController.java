@@ -17,11 +17,11 @@ public class LecturerSidebarComponentController extends SidebarComponentControll
   private Text approveRequestsText;
 
   @FXML
-  private Text viewFeedbackText;
+  private Text historyText;
 
   @FXML
   public void initialize() {
-    setPages(new ArrayList<Text>(Arrays.asList(homeText, manageSlotsText, approveRequestsText, viewFeedbackText)));
+    setPages(new ArrayList<Text>(Arrays.asList(homeText, manageSlotsText, approveRequestsText, historyText)));
     setRedirectPrefix("Lecturer");
   }
 }

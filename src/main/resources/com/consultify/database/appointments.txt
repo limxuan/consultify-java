@@ -1,2 +1,2 @@
 appointmentId|studentId|slotId|purpose|status|createdAt|studentFeedback|lecturerFeedback
-433d594d-2233-4d27-bbf4-30119dac68e2|S001|f994f808-1df1-4b5e-bbbd-367f89c3f041|null|Approved|2024-12-18T22:09|null|null
+433d594d-2233-4d27-bbf4-30119dac68e2|S001|f994f808-1df1-4b5e-bbbd-367f89c3f041|null|Approved|2024-12-18T22:09|null|what the sig

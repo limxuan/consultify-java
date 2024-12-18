@@ -60,8 +60,8 @@
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
             </Text>
-            <Text fx:id="viewFeedbackText" fill="WHITE" onMouseClicked="#clickPage"
-               strokeType="OUTSIDE" strokeWidth="0.0" text="View Feedback" textAlignment="CENTER"
+            <Text fx:id="historyText" fill="WHITE" onMouseClicked="#clickPage"
+               strokeType="OUTSIDE" strokeWidth="0.0" text="History" textAlignment="CENTER"
                wrappingWidth="169.32536745135036">
                <font>
                   <Font name="Avenir Light" size="25.0" />

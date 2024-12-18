@@ -153,6 +153,26 @@ public class AppointmentService {
     return new PastAppointmentsResult(pastAppointments, uniqueLecturers, uniqueStatuses);
   }
 
+  public ArrayList<String[]> getLecturerPastAppointments(String lecturerId) {
+    ArrayList<String[]> records = appointmentDatabaseService.parseContent();
+
+    String[] validStatuses = { AppointmentStatus.RESCHEDULED_APPROVED, AppointmentStatus.CANCELLED,
+        AppointmentStatus.REJECTED, AppointmentStatus.RESCHEDULED_PENDING_APPROVAL };
+    ArrayList<String[]> pastAppointments = new ArrayList<>();
+
+    for (String[] record : records) {
+      String slotId = record[2];
+      String[] slotRecord = slotService.getSlotFromId(slotId);
+
+      if (slotRecord != null && slotRecord[1].equals(lecturerId)) {
+        if (TimeUtils.isPast(slotRecord[3]) || Arrays.asList(validStatuses).contains(record[4])) {
+          pastAppointments.add(record);
+        }
+      }
+    }
+    return pastAppointments;
+  }
+
   public void addFeedback(String appointmentId, String feedback, boolean isStudentFeedback) {
     ArrayList<String[]> records = appointmentDatabaseService.parseContent();
     for (String[] record : records) {
