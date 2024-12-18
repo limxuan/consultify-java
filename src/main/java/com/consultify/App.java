@@ -2,9 +2,6 @@ package com.consultify;
 
 import java.io.IOException;
 
-import com.consultify.constants.Role;
-import com.consultify.service.AppointmentService;
-import com.consultify.service.UserSession;
 import com.consultify.utils.SceneSwitcher;
 
 import javafx.application.Application;
@@ -17,7 +14,7 @@ public class App extends Application {
   @Override
   public void start(Stage stage) throws IOException {
     SceneSwitcher.init(stage);
-    SceneSwitcher.switchTo("StudentLoginPage.fxml", "Home");
+    SceneSwitcher.switchTo("StudentLoginPage.fxml", "Login");
   }
 
   public static void main(String[] args) {
