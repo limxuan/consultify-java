@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.VBox;
 import javafx.scene.Parent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,7 +11,6 @@ import com.consultify.service.AppointmentService;
 import com.consultify.service.SlotService;
 import com.consultify.service.UserService;
 import com.consultify.service.UserSession;
-import com.consultify.utils.SceneSwitcher;
 import com.consultify.utils.TimeUtils;
 
 public class LecturerHomeController extends LecturerSidebarBaseController {
@@ -59,15 +57,6 @@ public class LecturerHomeController extends LecturerSidebarBaseController {
     } catch (IOException e) {
       System.out.println("Error loading UpcomingAppointmentItem.fxml: " + e.getMessage());
       e.printStackTrace();
-    }
-  }
-
-  public void redirectBookAppointment(MouseEvent e) {
-    System.out.println("redirect book appointment clicked");
-    try {
-      SceneSwitcher.switchTo("StudentBookAppointmentPage.fxml", "Book Appointment");
-    } catch (Exception err) {
-      err.printStackTrace();
     }
   }
 
