@@ -15,7 +15,7 @@ import com.consultify.service.UserSession;
 import com.consultify.utils.SceneSwitcher;
 import com.consultify.utils.TimeUtils;
 
-public class StudentHomeController extends StudentSidebarBaseController {
+public class LecturerHomeController extends LecturerSidebarBaseController {
 
   @FXML
   private VBox appointmentsVBox; // Reference to the VBox in the main FXML
@@ -29,7 +29,7 @@ public class StudentHomeController extends StudentSidebarBaseController {
 
   public void initialize() {
     initBase();
-    ArrayList<String[]> appointments = appointmentService.getUpcomingAppointments(UserSession.getUserId(), true);
+    ArrayList<String[]> appointments = appointmentService.getUpcomingAppointments(UserSession.getUserId(), false);
     upcomingAppointmentsText.setText("Upcoming Appointments: " + appointments.size());
 
     for (String[] appointment : appointments) {

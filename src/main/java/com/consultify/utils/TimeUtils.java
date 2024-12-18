@@ -25,6 +25,15 @@ public class TimeUtils {
     }
   }
 
+  public static String convertDateToISO(Date date) {
+    try {
+      SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+      return dateFormat.format(date);
+    } catch (Exception e) {
+      return null;
+    }
+  }
+
   public static Boolean isPast(String timeInISO) {
     Date time = convertISOToDate(timeInISO);
     return new Date().after(time);
@@ -83,6 +92,22 @@ public class TimeUtils {
       long days = ChronoUnit.DAYS.between(nowInstant, parsedInstant);
       return days;
     } catch (Exception e) {
+      return null;
+    }
+  }
+
+  public static String parseSelectedDateTime(String date, String time, int durationInHours) {
+    try {
+      String combinedDateTime = date + "T" + time;
+
+      Date selectedDate = TimeUtils.convertISOToDate(combinedDateTime);
+
+      Instant instant = selectedDate.toInstant().plus(durationInHours, ChronoUnit.HOURS);
+      Date adjustedDate = Date.from(instant);
+
+      return convertDateToISO(adjustedDate);
+    } catch (Exception e) {
+      System.out.println("Error parsing date and time: " + e.getMessage());
       return null;
     }
   }

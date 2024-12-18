@@ -13,7 +13,10 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="433.0" spacing="15.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.consultify.controller.AppointmentCardController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+   minWidth="-Infinity" prefHeight="470.0" prefWidth="433.0" spacing="15.0"
+   xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+   fx:controller="com.consultify.controller.AppointmentCardController">
    <children>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
          <children>
@@ -24,31 +27,37 @@
                         <Insets />
                      </StackPane.margin>
                   </Circle>
-                  <ImageView fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="120.0" fitWidth="120.0" pickOnBounds="true"
+                     preserveRatio="true">
                      <StackPane.margin>
                         <Insets />
                      </StackPane.margin>
                   </ImageView>
                </children>
             </StackPane>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lecturer's name">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lecturer's name" fx:id="name">
                <font>
                   <Font name="Avenir Next Demi Bold" size="13.0" />
                </font>
             </Text>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="209.0" prefWidth="369.0" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 20px;">
+                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                     minWidth="-Infinity" prefHeight="209.0" prefWidth="369.0" spacing="10.0"
+                     style="-fx-background-color: white; -fx-background-radius: 20px;">
                      <children>
-                        <Text fill="#9e9e9e" strokeType="OUTSIDE" strokeWidth="0.0" text="Booking details">
+                        <Text fill="#9e9e9e" strokeType="OUTSIDE" strokeWidth="0.0"
+                           text="Booking details">
                            <font>
                               <Font name="Avenir Light" size="13.0" />
                            </font>
                         </Text>
                         <GridPane>
                            <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="152.68106079101562" minWidth="10.0" prefWidth="55.86516571044922" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="266.46876525878906" minWidth="10.0" prefWidth="253.13483428955078" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="152.68106079101562"
+                                 minWidth="10.0" prefWidth="55.86516571044922" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="266.46876525878906"
+                                 minWidth="10.0" prefWidth="253.13483428955078" />
                            </columnConstraints>
                            <rowConstraints>
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -59,15 +68,24 @@
                            </rowConstraints>
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Status:" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Time:" GridPane.rowIndex="1" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date:" GridPane.rowIndex="2" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Venue:" GridPane.rowIndex="3" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Purpose:" GridPane.rowIndex="4" />
-                              <Text fx:id="statusValue" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" />
-                              <Text fx:id="timeValue" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Text fx:id="dateValue" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Text fx:id="venueValue" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <Text fx:id="purposeValue" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Time:"
+                                 GridPane.rowIndex="1" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date:"
+                                 GridPane.rowIndex="2" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Venue:"
+                                 GridPane.rowIndex="3" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Purpose:"
+                                 GridPane.rowIndex="4" />
+                              <Text fx:id="statusValue" strokeType="OUTSIDE" strokeWidth="0.0"
+                                 text="Text" GridPane.columnIndex="1" />
+                              <Text fx:id="timeValue" strokeType="OUTSIDE" strokeWidth="0.0"
+                                 text="Text" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Text fx:id="dateValue" strokeType="OUTSIDE" strokeWidth="0.0"
+                                 text="Text" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Text fx:id="venueValue" strokeType="OUTSIDE" strokeWidth="0.0"
+                                 text="Text" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Text fx:id="purposeValue" strokeType="OUTSIDE" strokeWidth="0.0"
+                                 text="Text" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                            </children>
                            <padding>
                               <Insets left="20.0" right="20.0" />
@@ -84,9 +102,13 @@
       </VBox>
       <HBox alignment="CENTER" prefHeight="51.0" prefWidth="433.0" spacing="15.0">
          <children>
-            <Button fx:id="cancelBtn" mnemonicParsing="false" style="-fx-background-color: #ff4d4d; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20 10 20; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-color: #ff0000;" text="Cancel Booking" />
+            <Button fx:id="cancelBtn" mnemonicParsing="false"
+               style="-fx-background-color: #ff4d4d; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20 10 20; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-color: #ff0000;"
+               text="Cancel Booking" />
 
-            <Button fx:id="rescheduleBtn" mnemonicParsing="false" style="-fx-background-color: #ffa500; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20 10 20; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-color: #e67e22;" text="Reschedule Booking" />
+            <Button fx:id="rescheduleBtn" mnemonicParsing="false"
+               style="-fx-background-color: #ffa500; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20 10 20; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-color: #e67e22;"
+               text="Reschedule Booking" />
          </children>
       </HBox>
    </children>

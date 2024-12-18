@@ -30,6 +30,9 @@ import javafx.stage.Stage;
 
 public class AppointmentCardController {
   @FXML
+  private Text name;
+
+  @FXML
   private Text statusValue;
 
   @FXML
@@ -78,6 +81,8 @@ public class AppointmentCardController {
     }
 
     String[] lecturerRecord = userService.getLecturerById(slotRecord[1]);
+
+    name.setText(lecturerRecord[5]);
 
     String time = String.format("%s to %s",
         TimeUtils.getTime(slotRecord[2]),
@@ -144,6 +149,10 @@ public class AppointmentCardController {
     curStage.close();
     ArrayList<String[]> availableSlots = slotService.getAvailableSlotsForLecturer(this.slotRecord[1]);
     System.out.println("Printing available slots, len: " + availableSlots.size());
+    if (availableSlots.isEmpty()) {
+      showAlert("Error", "This lecturer does not have other available slots!");
+      return;
+    }
 
     Stage stage = new Stage();
     VBox vbox = new VBox(15);

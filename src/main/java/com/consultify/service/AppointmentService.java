@@ -16,21 +16,35 @@ public class AppointmentService {
   private SlotService slotService = new SlotService();
   private UserService userService = new UserService();
 
-  public ArrayList<String[]> getUpcomingAppointments() {
-    ArrayList<String[]> appointments = this.getCurrentSessionAppointmentsForSession();
-    List<String> validStatuses = List.of(AppointmentStatus.PENDING_APPROVAL,
-        AppointmentStatus.RESCHEDULED_PENDING_APPROVAL, AppointmentStatus.APPROVED,
-        AppointmentStatus.RESCHEDULED_APPROVED);
+  public ArrayList<String[]> getUpcomingAppointments(String id, boolean isStudent) {
+    ArrayList<String[]> appointments = this.getAppointmentsForId(id, isStudent);
+    List<String> validStatuses = new ArrayList<String>(List.of(
+        AppointmentStatus.APPROVED,
+        AppointmentStatus.RESCHEDULED_APPROVED));
+
+    if (isStudent) {
+      validStatuses.add(AppointmentStatus.PENDING_APPROVAL);
+      validStatuses.add(AppointmentStatus.RESCHEDULED_PENDING_APPROVAL);
+    }
+
+    // print valid statuses
+    System.out.println(validStatuses);
+
     return appointments.stream().filter(
         record -> validStatuses.contains(record[4]) && TimeUtils.isBefore(slotService.getSlotFromId(record[2])[2]))
         .collect(Collectors.toCollection(ArrayList::new));
   }
 
-  public ArrayList<String[]> getCurrentSessionAppointmentsForSession() {
+  public ArrayList<String[]> getAppointmentsForId(String id, boolean isStudent) {
     ArrayList<String[]> records = appointmentDatabaseService.parseContent();
-
-    return records.stream().filter(record -> record[1].equals(UserSession.getUserId()))
-        .collect(Collectors.toCollection(ArrayList::new));
+    return records.stream().filter(record -> {
+      if (isStudent) {
+        return record[1].equals(id);
+      } else {
+        String[] slot = slotService.getSlotFromId(record[2]);
+        return slot[1].equals(UserSession.getUserId());
+      }
+    }).collect(Collectors.toCollection(ArrayList::new));
   }
 
   public void createAppointment(String slotId, String reason) {

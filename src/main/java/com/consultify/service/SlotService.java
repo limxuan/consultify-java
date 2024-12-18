@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import com.consultify.utils.TimeUtils;
@@ -60,5 +61,29 @@ public class SlotService {
     ArrayList<String[]> records = slotDatabaseService.parseContent();
     return records.stream().filter(record -> record[1].equals(lecturerId) && record[4].equals("true"))
         .collect(Collectors.toCollection(ArrayList::new));
+  }
+
+  public String addSlot(String lecturerId, String date, String time, int durationInHours) {
+    ArrayList<String[]> records = slotDatabaseService.parseContent();
+    String startTime = date + "T" + time;
+    String endTime = TimeUtils.parseSelectedDateTime(date, time, durationInHours);
+    String slotId = UUID.randomUUID().toString();
+    String[] newRecord = new String[] { slotId, lecturerId, startTime, endTime, "true",
+        TimeUtils.getCurrentTimeInISO() };
+    records.add(newRecord);
+    slotDatabaseService.saveData(records);
+    return slotId;
+  }
+
+  public void removeSlot(String slotId) {
+    System.out.println("removing slot " + slotId);
+    ArrayList<String[]> records = slotDatabaseService.parseContent();
+    for (String[] record : records) {
+      if (record[0].equals(slotId)) {
+        records.remove(record);
+        break;
+      }
+    }
+    slotDatabaseService.saveData(records);
   }
 }
