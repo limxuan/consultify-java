@@ -2,8 +2,10 @@ package com.consultify.controller;
 
 import java.util.ArrayList;
 
+import com.consultify.service.UserSession;
 import com.consultify.utils.SceneSwitcher;
 
+import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -12,6 +14,9 @@ public abstract class SidebarComponentController {
   private ArrayList<Text> pages;
   private String redirectPrefix;
 
+  @FXML
+  private Text username;
+
   private String selectedColor = "#394368";
 
   public void setPages(ArrayList<Text> pages) {
@@ -19,6 +24,7 @@ public abstract class SidebarComponentController {
   }
 
   public void updateCurrentPage(String currentPage) {
+    username.setText(UserSession.getUsername());
     System.out.println("this is cur page ___----__" + currentPage);
     ArrayList<Text> texts = new ArrayList<>(pages);
     for (Text text : texts) {
