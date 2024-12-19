@@ -40,15 +40,14 @@ public class ApproveRequestGridItemController {
   private AppointmentService appointmentService = new AppointmentService();
   private RescheduleService rescheduleService = new RescheduleService();
   private String appointmentId;
-  private boolean isReschedule;
+  private String status;
 
   public void setAppointmentDetails(String appointmentId) {
     this.appointmentId = appointmentId;
     String[] appointmentRecord = this.appointmentService.getAppointmentById(appointmentId);
     String[] slotRecord = this.slotService.getSlotFromId(appointmentRecord[2]);
     String[] studentRecord = this.userService.getStudentById(appointmentRecord[1]);
-
-    isReschedule = appointmentRecord[4].equals(AppointmentStatus.RESCHEDULED_PENDING_APPROVAL);
+    status = appointmentRecord[4];
 
     studentName.setText(studentRecord[6]);
     purposeText.setText("Purpose: " + appointmentRecord[3]);
@@ -60,19 +59,14 @@ public class ApproveRequestGridItemController {
   }
 
   public void approveClicked(MouseEvent e) {
-    if (isReschedule) {
-      this.rescheduleService.acceptReschedule(appointmentId);
-    } else {
-      this.appointmentService.approveAppointment(appointmentId, AppointmentStatus.APPROVED);
-    }
-    showAlert("The reschedule request has been accepted successfully!");
+    this.appointmentService.approveAppointment(this.appointmentId, this.status);
+    showAlert("The request has been accepted successfully!");
     SceneSwitcher.refreshPage();
   }
 
   public void rejectClicked(MouseEvent e) {
-    // TODO: Hehrerere
-    rescheduleService.rejectReschedule(appointmentId);
-    showAlert("The reschedule request has been rejected successfully!");
+    this.appointmentService.rejectAppointment(this.appointmentId, this.status);
+    showAlert("The request has been rejected successfully!");
     SceneSwitcher.refreshPage();
   }
 

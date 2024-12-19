@@ -226,6 +226,18 @@ public class AppointmentService {
     }
   }
 
+  public void rejectAppointment(String appointmentId, String status) {
+    String[] appointmentRecord = getAppointmentById(appointmentId);
+    boolean isReschedule = appointmentRecord[4].equals(AppointmentStatus.RESCHEDULED_PENDING_APPROVAL);
+    if (isReschedule) {
+      RescheduleService rescheduleService = new RescheduleService();
+      rescheduleService.rejectReschedule(appointmentId);
+    } else {
+      updateStatus(appointmentId, AppointmentStatus.REJECTED);
+      slotService.setAvailable(appointmentRecord[2], "true");
+    }
+  }
+
   public void updateSlotId(String appointmentId, String slotId) {
     ArrayList<String[]> records = appointmentDatabaseService.parseContent();
     for (String[] record : records) {
