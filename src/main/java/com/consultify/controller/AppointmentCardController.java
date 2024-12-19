@@ -24,6 +24,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -159,7 +160,8 @@ public class AppointmentCardController {
     ArrayList<String[]> availableSlots = slotService.getAvailableSlotsForLecturer(this.slotRecord[1]);
     System.out.println("Printing available slots, len: " + availableSlots.size());
     if (availableSlots.isEmpty()) {
-      showAlert("Error", "This lecturer does not have other available slots!");
+      System.out.println("yuh");
+      showMessageStage("Error", "This lecturer does not have other available slots!");
       return;
     }
 
@@ -228,5 +230,14 @@ public class AppointmentCardController {
     } catch (Exception ex) {
       ex.printStackTrace();
     }
+  }
+
+  public void showMessageStage(String title, String message) {
+    Stage stage = new Stage();
+    stage.setTitle(title);
+    Label messageLabel = new Label(message);
+    StackPane layout = new StackPane(messageLabel);
+    stage.setScene(new Scene(layout, 300, 100));
+    stage.show();
   }
 }
