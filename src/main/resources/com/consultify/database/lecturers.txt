@@ -7,3 +7,4 @@ L005|Zain|Z@in1234|zain@edu.com.my|0135678901|Zainal Abidin|E-15-02|2024-11-19T0
 L006|lecturer|lecturer|lecturer@edu.com.my|0146789012|Lecturer Abidin|E-15
 e2b95978-82f9-4e4f-ae05-9807aac00878|lect|lect|19213123|lec|lec|B-07-88|2024-11-21T00:34
 1302fe54-d79b-461a-aa7c-f42b9b2228d0|lecturerhaha|lecpass|lectph|lectfull|lectemai|hehe|2024-11-21T00:35
+54b3634b-a38c-48d4-80c6-6718020850fe|juinkhai|juinkhai|123123123|Juin Khai|juinkhai@email.com|B-06-08|2024-12-19T14:42
