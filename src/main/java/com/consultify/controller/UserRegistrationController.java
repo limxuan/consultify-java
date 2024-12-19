@@ -90,9 +90,8 @@ public class UserRegistrationController implements Initializable {
         String officeLocation = result.get();
 
         String message = userService.registerLecturer(usernameInput.getText(), passwordInput.getText(),
-            phoneInput.getText(),
             fullNameInput.getText(),
-            emailInput.getText(), officeLocation);
+            emailInput.getText(), phoneInput.getText(), officeLocation);
         if (message.equals("Registered successfully!")) {
           new Alert(Alert.AlertType.INFORMATION, message + "\nYou can now sign in.").show();
           changeLoginScene("Lecturer", e);
