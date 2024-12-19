@@ -132,8 +132,8 @@ public class AppointmentService {
     Set<String> uniqueLecturers = new HashSet<>();
     Set<String> uniqueStatuses = new HashSet<>();
 
-    String[] validStatuses = { AppointmentStatus.RESCHEDULED_APPROVED, AppointmentStatus.CANCELLED,
-        AppointmentStatus.REJECTED, AppointmentStatus.RESCHEDULED_PENDING_APPROVAL };
+    String[] validStatuses = { AppointmentStatus.CANCELLED,
+        AppointmentStatus.REJECTED, AppointmentStatus.APPROVED_RESCHEDULE_REJECTED };
     ArrayList<String[]> pastAppointments = new ArrayList<>();
 
     for (String[] record : records) {
