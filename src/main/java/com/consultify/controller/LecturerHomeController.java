@@ -33,6 +33,7 @@ public class LecturerHomeController extends LecturerSidebarBaseController {
     for (String[] appointment : appointments) {
       String[] slot = slotService.getSlotFromId(appointment[2]);
       String[] student = userService.getStudentById(appointment[1]);
+      String[] lecturer = userService.getLecturerById(UserSession.getUserId());
       String appointmentId = appointment[0];
       String studentFullName = student[6];
       String slotStart = slot[2];
@@ -40,7 +41,7 @@ public class LecturerHomeController extends LecturerSidebarBaseController {
       String formatTime = TimeUtils.getTime(slotStart) + " to " + TimeUtils.getTime(slotEnd) + " ("
           + TimeUtils.getDate(slotStart) + ")";
       ;
-      String officeLocation = student[6];
+      String officeLocation = lecturer[6];
       addAppointmentItem(appointmentId, studentFullName, appointment[3], formatTime, officeLocation, appointment[4]);
     }
 
